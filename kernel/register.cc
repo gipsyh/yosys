@@ -781,7 +781,6 @@ struct HelpPass : public Pass {
 		fprintf(f, "%s", title_line.c_str());
 		fprintf(f, "%s - %s\n", cmd.c_str(), title.c_str());
 		fprintf(f, "%s\n", title_line.c_str());
-		fprintf(f, ".. raw:: latex\n\n    \\begin{comment}\n\n");
 
 		// render html
 		fprintf(f, ".. cmd:def:: %s\n", cmd.c_str());
@@ -850,17 +849,6 @@ struct HelpPass : public Pass {
 			}
 
 			blank_count = 0;
-		}
-		fputc('\n', f);
-
-		// render latex
-		fprintf(f, ".. raw:: latex\n\n    \\end{comment}\n\n");
-		fprintf(f, ".. only:: latex\n\n");
-		fprintf(f, "    ::\n\n");
-		std::stringstream ss2;
-		ss2 << textcp;
-		for (std::string line; std::getline(ss2, line, '\n');) {
-			fprintf(f, "        %s\n", line.c_str());
 		}
 		fclose(f);
 	}
