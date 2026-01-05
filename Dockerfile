@@ -5,7 +5,7 @@ RUN apt install -y build-essential git clang pkg-config bison flex libreadline-d
 WORKDIR /root/yosys
 COPY . .
 RUN make config-clang
-RUN make
+RUN make -j
 RUN make install
 
 FROM ubuntu:24.04
